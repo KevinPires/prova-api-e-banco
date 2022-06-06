@@ -1,12 +1,17 @@
 import { con } from './connection.js'
 
-export async function clientePet (animal){
+export async function clientePet (pet){
 
     const comando = `
     insert into tb_pet (nm_pet)
 	values(?)`
-        const [linhas] = await con.query (comando, animal);
-        return linhas;
+        const [resposta] = await con.query (comando, [pet.nome]);
+        
+        
+      
+        return resposta[0];
+
+        
 }
 export async function listarTodos (){
     const comando =

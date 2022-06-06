@@ -6,14 +6,15 @@ const server = Router();
 
 server.post('/pet', async (req, resp) => {
     try {
-        const { novoPet }  = req.body;
-        if(!novoPet.nome)
-    throw new Error('nome do pet obrigatório')
+        const  pet = req.body;
+        if(!pet.nome)
+    throw new Error('nome do pet obrigatório');
 
-    const petInserido = await clientePet (animal);
+    const petInserido = await clientePet (pet);
+    console.log('');
     resp.send(petInserido);
     } catch (err) {
-        resp.status(400).send({erro:'Deu erro!'})
+        resp.status(400).send({erro:err.message})
         
     }
 })
